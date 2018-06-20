@@ -177,5 +177,34 @@ public class TreeProblems {
   }
 
 /********************************************************************************************/
+  /*
+  Determine if binary tree is binary search tree
+   */
+
+  private static Boolean isBST(Node root)
+  {
+    //return if root is null
+    //check if value of root is less than value of right child
+    //check if value of root is greater than left child
+    //
+    if(root == null)
+      return true;
+
+    if(root.left != null)
+    {
+      if(!(root.left.data < root.data && isBST(root.left))
+          || (root.left.data >= root.data))
+        return false;
+    }
+
+    if(root.right != null)
+    {
+      if(!(root.right.data >= root.data && isBST(root.right))
+          || (root.right.data < root.data))
+        return false;
+    }
+
+    return true;
+  }
 
 }
