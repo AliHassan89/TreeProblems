@@ -207,4 +207,52 @@ public class TreeProblems {
     return true;
   }
 
+/********************************************************************************************/
+
+  /*
+  Second largest element in binary search tree
+   */
+
+  private static int secondLargestElement(Node root)
+  {
+    if (root == null)
+      return -1;
+
+    return secondLargestElementUtil(root, Integer.MIN_VALUE);
+  }
+
+  private static int secondLargestElementUtil(Node root, int secondLargest)
+  {
+    if (root == null)
+    {
+      return secondLargest;
+    }
+
+    if (root.right != null)
+    {
+      secondLargest = root.data;
+      secondLargestElementUtil(root.right, secondLargest);
+    }
+    else if (root.left != null && secondLargest < root.left.data)
+    {
+      //largest in left subtree
+      secondLargest = largestElement(root.left);
+    }
+
+    return secondLargest;
+  }
+
+  private static int largestElement(Node root)
+  {
+    if (root == null)
+      return 0;
+
+    if (root.right != null)
+      return largestElement(root.right);
+
+    return root.data;
+  }
+
+/********************************************************************************************/
+
 }
