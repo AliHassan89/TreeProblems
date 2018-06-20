@@ -254,5 +254,23 @@ public class TreeProblems {
   }
 
 /********************************************************************************************/
+  /*
+    Minimum hieght tree from sorted array
+   */
 
+  public Node buildMinimumHeightTree(int[] arr, int start, int end)
+  {
+    if (end < start)
+      return null;
+
+    int mid = (start + end) / 2;
+    Node n = new Node(arr[mid]);
+
+    n.left = buildMinimumHeightTree(arr, start, mid-1);
+    n.right = buildMinimumHeightTree(arr, mid+1, end);
+
+    return n;
+  }
+
+/********************************************************************************************/
 }
