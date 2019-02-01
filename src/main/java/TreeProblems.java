@@ -180,31 +180,29 @@ public class TreeProblems {
   /*
   Determine if binary tree is binary search tree
    */
-
-  private static Boolean isBST(Node root)
-  {
-    //return if root is null
-    //check if value of root is less than value of right child
-    //check if value of root is greater than left child
-    //
-    if(root == null)
+  
+  public boolean isValidBST(Node root) {
+    if (root == null)
       return true;
 
-    if(root.left != null)
-    {
-      if(!(root.left.data < root.data && isBST(root.left))
-          || (root.left.data >= root.data))
-        return false;
+    return isBSTHelper(root, null, null);
+  }
+  
+  public boolean isBSTHelper(Node node, Integer lower_limit, Integer upper_limit) {
+    if ((lower_limit != null) && (node.data <= lower_limit)) {
+      return false;
+    }
+    if ((upper_limit != null) && (upper_limit <= node.data)) {
+      return false;
     }
 
-    if(root.right != null)
-    {
-      if(!(root.right.data >= root.data && isBST(root.right))
-          || (root.right.data < root.data))
-        return false;
+    boolean left = node.left != null ? isBSTHelper(node.left, lower_limit, node.data) : true;
+    if (left) {
+      boolean right = node.right != null ? isBSTHelper(node.right, node.data, upper_limit) : true;
+      return right;
     }
-
-    return true;
+    
+    return false;
   }
 
 /********************************************************************************************/
