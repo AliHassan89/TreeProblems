@@ -329,6 +329,8 @@ public class TreeProblems {
   Lowest common ancestor of a binary tree
   */
   
+  private TreeNode ans;
+  
    private boolean recurseTree(TreeNode currentNode, TreeNode p, TreeNode q) {
 
         // If reached the end of a branch, return false.
